@@ -1,14 +1,19 @@
-<!DOCTYPE html>
-<html>
-  <head>
-    <meta charset="UTF-8">
-    <title>Parboiled Rice</title>
-  </head>
-  <body>
-    <h1>Parboiled Rice</h1>
-    <p><strong>Cash Price:</strong> $<span id="cash-price">1.00</span></p>
-    <p><strong>Credit Price:</strong> $<span id="card-price">1.10</span></p>
+<div id="price-info">
+  <h1>Rice</h1>
+  <p>Cash Price: <span id="cash-price">Loading...</span></p>
+  <p>Card Price: <span id="card-price">Loading...</span></p>
+</div>
 
-    <a href="index.html">← Back to home</a>
-  </body>
-</html>
+<script>
+  fetch("https://script.google.com/macros/s/AKfycbz09_t-J42TQrE7-iEz6VsC3D4VRh5myi0CLlaJZDgoSeMDlfQgtlsETbN4MwAcMdp8Ew/exec?item=rice")
+    .then(response => response.json())
+    .then(data => {
+      if (!data.error) {
+        document.getElementById("cash-price").textContent = `$${data.cash}`;
+        document.getElementById("card-price").textContent = `$${data.card}`;
+      } else {
+        document.getElementById("price-info").innerHTML = "Item not found.";
+      }
+    });
+</script>
+
