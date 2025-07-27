@@ -1,18 +1,31 @@
-<script>
-  const item = "rice";  // same as in the sheet, case insensitive
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Rice Prices</title>
+</head>
+<body>
+  <h1>Rice</h1>
+  <p>Cash Price: <span id="cash-price">Loading...</span></p>
+  <p>Card Price: <span id="card-price">Loading...</span></p>
 
-  fetch("https://script.google.com/macros/s/YOUR_DEPLOYMENT_ID/exec?item=" + item)
-    .then(response => response.json())
-    .then(data => {
-      if (!data.error) {
-        document.getElementById("cash-price").textContent = "$" + data.cash;
-        document.getElementById("card-price").textContent = "$" + data.card;
-      } else {
-        document.body.innerHTML = data.error;
-      }
-    })
-    .catch(err => {
-      console.error("Fetch error:", err);
-      document.body.innerHTML = "Error loading prices.";
-    });
-</script>
+  <!-- Place your JavaScript here -->
+  <script>
+    const item = "rice";  // same as in the sheet, case insensitive
+
+    fetch("https://script.google.com/macros/s/YOUR_DEPLOYMENT_ID/exec?item=" + item)
+      .then(response => response.json())
+      .then(data => {
+        if (!data.error) {
+          document.getElementById("cash-price").textContent = "$" + data.cash;
+          document.getElementById("card-price").textContent = "$" + data.card;
+        } else {
+          document.body.innerHTML = data.error;
+        }
+      })
+      .catch(err => {
+        console.error("Fetch error:", err);
+        document.body.innerHTML = "Error loading prices.";
+      });
+  </script>
+</body>
+</html>
