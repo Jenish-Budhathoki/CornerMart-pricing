@@ -6,25 +6,24 @@
   <style>
     body {
       font-family: Arial, sans-serif;
-      padding: 40px;
       text-align: center;
       background-color: #f8f9fa;
+      padding: 40px;
     }
 
     h1 {
       font-size: 2.5rem;
-      margin-bottom: 30px;
       color: #333;
+      margin-bottom: 40px;
     }
 
     table {
       margin: 0 auto;
       border-collapse: collapse;
-      width: 60%;
-      max-width: 400px;
+      width: 300px;
       background-color: #fff;
-      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-      border-radius: 12px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+      border-radius: 10px;
       overflow: hidden;
     }
 
@@ -36,26 +35,29 @@
 
     th {
       font-weight: bold;
-      font-size: 1.4rem;
       background-color: #e9ecef;
       color: #212529;
-      text-align: left;
+    }
+
+    tr:last-child td {
+      border-bottom: none;
     }
 
     td {
-      font-weight: 600;
       color: #007bff;
-      text-align: right;
+      font-weight: 600;
     }
 
     @media (max-width: 600px) {
-      table, th, td {
-        font-size: 1rem;
-        width: 90%;
-      }
-
       h1 {
         font-size: 1.8rem;
+      }
+      table {
+        width: 90%;
+      }
+      th, td {
+        font-size: 1.1rem;
+        padding: 15px;
       }
     }
   </style>
@@ -66,10 +68,10 @@
   <table>
     <tr>
       <th>Cash Price</th>
-      <td id="cash-price">Loading...</td>
+      <th>Credit Price</th>
     </tr>
     <tr>
-      <th>Card Price</th>
+      <td id="cash-price">Loading...</td>
       <td id="card-price">Loading...</td>
     </tr>
   </table>
