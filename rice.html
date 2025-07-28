@@ -27,7 +27,7 @@
     th, td {
       padding: 20px;
       font-size: 1.3rem;
-      border: 2px solid #000; /* BLACK border */
+      border: 2px solid #000; /* visible black border */
     }
 
     th {
@@ -71,7 +71,7 @@
   </table>
 
   <script>
-    const item = "rice";  // Same as in your sheet (case insensitive)
+    const item = "rice";  // Same as in the sheet
 
     fetch("https://script.google.com/macros/s/AKfycbxmIJjtYV84S7AsNLwySfDXp_7OOJc4HkDZN2oDpEvJBIXf5D-nhR22Mrpd-BCEtCXM/exec?item=" + item)
       .then(response => response.json())
