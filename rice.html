@@ -20,18 +20,14 @@
     table {
       margin: 0 auto;
       border-collapse: collapse;
-      width: 60%;
-      max-width: 400px;
-      background-color: #fff;
-      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-      border-radius: 12px;
-      overflow: hidden;
+      width: 300px;
+      background-color: #ffffff;
     }
 
     th, td {
       padding: 20px;
       font-size: 1.3rem;
-      border: 1px solid #ddd;
+      border: 2px solid #000; /* BLACK border */
     }
 
     th {
@@ -46,13 +42,15 @@
     }
 
     @media (max-width: 600px) {
-      table, th, td {
-        font-size: 1rem;
-        width: 100%;
+      table {
+        width: 90%;
       }
-
+      th, td {
+        font-size: 1.1rem;
+        padding: 15px;
+      }
       h1 {
-        font-size: 1.8rem;
+        font-size: 2rem;
       }
     }
   </style>
@@ -73,7 +71,7 @@
   </table>
 
   <script>
-    const item = "rice";  // same as in the sheet, case insensitive
+    const item = "rice";  // Same as in your sheet (case insensitive)
 
     fetch("https://script.google.com/macros/s/AKfycbxmIJjtYV84S7AsNLwySfDXp_7OOJc4HkDZN2oDpEvJBIXf5D-nhR22Mrpd-BCEtCXM/exec?item=" + item)
       .then(response => response.json())
