@@ -1,57 +1,33 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-  <title>Rice Prices</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8">
+  <title>Rice Price</title>
   <style>
     body {
       font-family: Arial, sans-serif;
       text-align: center;
-      background-color: #f8f9fa;
-      padding: 40px;
+      margin-top: 50px;
     }
 
     h1 {
-      font-size: 2.5rem;
-      margin-bottom: 30px;
-      color: #333;
+      font-size: 36px;
     }
 
     table {
       margin: 0 auto;
       border-collapse: collapse;
-      width: 300px;
-      background-color: #ffffff;
+      margin-top: 30px;
     }
 
     th, td {
-      padding: 20px;
-      font-size: 1.3rem;
-      border: 2px solid #000; /* visible black border */
+      border: 2px solid black;
+      padding: 12px 24px;
+      font-size: 20px;
     }
 
     th {
       font-weight: bold;
-      font-size: 1.4rem;
-      background-color: #e9ecef;
-    }
-
-    td {
-      font-weight: 600;
-      color: #007bff;
-    }
-
-    @media (max-width: 600px) {
-      table {
-        width: 90%;
-      }
-      th, td {
-        font-size: 1.1rem;
-        padding: 15px;
-      }
-      h1 {
-        font-size: 2rem;
-      }
     }
   </style>
 </head>
@@ -62,32 +38,13 @@
   <table>
     <tr>
       <th>Cash Price</th>
-      <th>Credit Price</th>
+      <th>Card Price</th>
     </tr>
     <tr>
-      <td id="cash-price">Loading...</td>
-      <td id="card-price">Loading...</td>
+      <td>$3.40</td>
+      <td>$3.536</td>
     </tr>
   </table>
-
-  <script>
-    const item = "rice";  // Same as in the sheet
-
-    fetch("https://script.google.com/macros/s/AKfycbxmIJjtYV84S7AsNLwySfDXp_7OOJc4HkDZN2oDpEvJBIXf5D-nhR22Mrpd-BCEtCXM/exec?item=" + item)
-      .then(response => response.json())
-      .then(data => {
-        if (!data.error) {
-          document.getElementById("cash-price").textContent = "$" + data.cash;
-          document.getElementById("card-price").textContent = "$" + data.card;
-        } else {
-          document.body.innerHTML = data.error;
-        }
-      })
-      .catch(err => {
-        console.error("Fetch error:", err);
-        document.body.innerHTML = "Error loading prices.";
-      });
-  </script>
 
 </body>
 </html>
