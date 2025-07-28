@@ -41,10 +41,31 @@
       <th>Card Price</th>
     </tr>
     <tr>
-      <td>$3.40</td>
-      <td>$3.536</td>
+      <td id="cash-price">Loading...</td>
+      <td id="card-price">Loading...</td>
     </tr>
   </table>
+
+  <script>
+    const item = "rice";  // same as in the sheet, lowercase
+
+    fetch("https://script.google.com/macros/s/AKfycbxmIJjtYV84S7AsNLwySfDXp_7OOJc4HkDZN2oDpEvJBIXf5D-nhR22Mrpd-BCEtCXM/exec?item=" + item)
+      .then(response => response.json())
+      .then(data => {
+        if (!data.error) {
+          document.getElementById("cash-price").textContent = "$" + data.cash;
+          document.getElementById("card-price").textContent = "$" + data.card;
+        } else {
+          document.getElementById("cash-price").textContent = "Error";
+          document.getElementById("card-price").textContent = "Error";
+        }
+      })
+      .catch(err => {
+        console.error("Fetch error:", err);
+        document.getElementById("cash-price").textContent = "Error";
+        document.getElementById("card-price").textContent = "Error";
+      });
+  </script>
 
 </body>
 </html>
