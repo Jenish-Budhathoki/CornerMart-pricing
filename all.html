@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Item Price</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      text-align: center;
+      margin-top: 50px;
+    }
+
+    h1 {
+      font-size: 36px;
+    }
+
+    table {
+      margin: 0 auto;
+      border-collapse: collapse;
+      margin-top: 30px;
+    }
+
+    th, td {
+      border: 2px solid black;
+      padding: 12px 24px;
+      font-size: 20px;
+    }
+
+    th {
+      font-weight: bold;
+    }
+  </style>
+</head>
+<body>
+
+  <h1 id="item-name">Loading...</h1>
+
+  <table>
+    <tr>
+      <th>Cash Price</th>
+      <th>Card Price</th>
+    </tr>
+    <tr>
+      <td id="cash-price">Loading...</td>
+      <td id="card-price">Loading...</td>
+    </tr>
+  </table>
+
+  <script>
+    // Get ?item= from the URL, fallback to "rice" if missing
+    const urlParams = new URLSearchParams(window.location.search);
+    const item = urlParams.get("item") || "rice";
+
+    // Update the heading dynamically
+    document.getElementById("item-name").textContent = item.charAt(0).toUpperCase() + item.slice(1);
+
+    // Fetch prices from Google Apps Script
+    fetch("https://script.google.com/macros/s/AKfycbxmIJjtYV84S7AsNLwySfDXp_7OOJc4HkDZN2oDpEvJBIXf5D-nhR22Mrpd-BCEtCXM/exec?item=" + item)
+      .then(response => response.json())
+      .then(data => {
+        if (!data.error) {
+          document.getElementById("cash-price").textContent = "$" + data.cash;
+          document.getElementById("card-price").textContent = "$" + data.card;
+        } else {
+          document.getElementById("cash-price").textContent = "Not Found";
+          document.getElementById("card-price").textContent = "Not Found";
+        }
+      })
+      .catch(err => {
+        console.error("Fetch error:", err);
+        document.getElementById("cash-price").textContent = "Error";
+        document.getElementById("card-price").textContent = "Error";
+      });
+  </script>
+
+</body>
+</html>
