@@ -1,44 +1,76 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
+  <meta charset="UTF-8">
   <title>Item Price</title>
-  <script src="https://cdn.tailwindcss.com"></script>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f0f8ff; /* mild blue */
+      text-align: center;
+      margin: 0;
+      padding: 50px 20px;
+    }
+
+    h1 {
+      font-size: 3rem;
+      color: #2563eb; /* blue-600 */
+      margin-bottom: 0.3rem;
+      font-weight: 600;
+    }
+
+    table {
+      margin: 0 auto;
+      border-collapse: collapse;
+      margin-top: 10px;
+      background-color: #ffffff;
+      border-radius: 10px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+      overflow: hidden;
+    }
+
+    th, td {
+      border: 1px solid #cbd5e1; /* soft gray-blue */
+      padding: 14px 28px;
+      font-size: 20px;
+    }
+
+    th {
+      background-color: #e0efff;
+      color: #1e40af;
+    }
+
+    tr:nth-child(even) td {
+      background-color: #f8fbff;
+    }
+
+    tr:hover td {
+      background-color: #e6f2ff;
+    }
+  </style>
 </head>
-<body class="bg-blue-50 text-gray-900 min-h-screen flex items-center justify-center p-6">
+<body>
 
-  <div class="max-w-md w-full bg-white rounded-xl shadow-lg p-8 border border-blue-50">
-    <h1 id="item-name" class="text-[3rem] font-semibold text-center text-blue-600 mb-2">
-      Loading...
-    </h1>
+  <h1 id="item-name">Loading...</h1>
 
-    <table class="w-full rounded-lg overflow-hidden text-lg" style="border-collapse: separate; border-spacing: 0 12px;">
-      <thead>
-        <tr class="bg-blue-50 text-blue-600">
-          <th class="py-4 px-6 text-left rounded-tl-lg">Cash Price</th>
-          <th class="py-4 px-6 text-left rounded-tr-lg">Card Price</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr class="bg-white shadow-md hover:shadow-lg transition-shadow duration-300">
-          <td id="cash-price" class="py-5 px-6 text-center font-medium">Loading...</td>
-          <td id="card-price" class="py-5 px-6 text-center font-medium">Loading...</td>
-        </tr>
-      </tbody>
-    </table>
-  </div>
+  <table>
+    <tr>
+      <th>Cash Price</th>
+      <th>Card Price</th>
+    </tr>
+    <tr>
+      <td id="cash-price">Loading...</td>
+      <td id="card-price">Loading...</td>
+    </tr>
+  </table>
 
   <script>
-    // Get ?item= from the URL, fallback to "rice" if missing
     const urlParams = new URLSearchParams(window.location.search);
     const item = urlParams.get("item") || "rice";
 
-    // Capitalize and update heading
     document.getElementById("item-name").textContent =
       item.charAt(0).toUpperCase() + item.slice(1);
 
-    // Fetch prices from Google Apps Script
     fetch("https://script.google.com/macros/s/AKfycbxmIJjtYV84S7AsNLwySfDXp_7OOJc4HkDZN2oDpEvJBIXf5D-nhR22Mrpd-BCEtCXM/exec?item=" + item)
       .then(response => response.json())
       .then(data => {
