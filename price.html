@@ -3,56 +3,38 @@
 <head>
   <meta charset="UTF-8">
   <title>Item Price</title>
-  <style>
-    body {
-      font-family: Arial, sans-serif;
-      text-align: center;
-      margin-top: 50px;
-    }
-
-    h1 {
-      font-size: 36px;
-    }
-
-    table {
-      margin: 0 auto;
-      border-collapse: collapse;
-      margin-top: 30px;
-    }
-
-    th, td {
-      border: 2px solid black;
-      padding: 12px 24px;
-      font-size: 20px;
-    }
-
-    th {
-      font-weight: bold;
-    }
-  </style>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
-<body>
+<body class="bg-gray-50 text-gray-800 min-h-screen flex items-center justify-center p-4">
 
-  <h1 id="item-name">Loading...</h1>
+  <div class="max-w-md w-full bg-white rounded-xl shadow-md p-6">
+    <h1 id="item-name" class="text-3xl font-semibold text-center mb-6">Loading...</h1>
 
-  <table>
-    <tr>
-      <th>Cash Price</th>
-      <th>Card Price</th>
-    </tr>
-    <tr>
-      <td id="cash-price">Loading...</td>
-      <td id="card-price">Loading...</td>
-    </tr>
-  </table>
+    <table class="w-full border border-gray-300 rounded-md overflow-hidden text-lg text-left">
+      <thead class="bg-gray-100">
+        <tr>
+          <th class="p-4 border-b">Cash Price</th>
+          <th class="p-4 border-b">Card Price</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr class="hover:bg-gray-50">
+          <td id="cash-price" class="p-4 border-b text-center">Loading...</td>
+          <td id="card-price" class="p-4 border-b text-center">Loading...</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
 
   <script>
     // Get ?item= from the URL, fallback to "rice" if missing
     const urlParams = new URLSearchParams(window.location.search);
     const item = urlParams.get("item") || "rice";
 
-    // Update the heading dynamically
-    document.getElementById("item-name").textContent = item.charAt(0).toUpperCase() + item.slice(1);
+    // Capitalize and update heading
+    document.getElementById("item-name").textContent =
+      item.charAt(0).toUpperCase() + item.slice(1);
 
     // Fetch prices from Google Apps Script
     fetch("https://script.google.com/macros/s/AKfycbxmIJjtYV84S7AsNLwySfDXp_7OOJc4HkDZN2oDpEvJBIXf5D-nhR22Mrpd-BCEtCXM/exec?item=" + item)
